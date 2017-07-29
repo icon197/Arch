@@ -21,7 +21,7 @@ genfstab -pU /mnt >> /mnt/etc/fstab
 
 # Copy file to new system
 cp install.sh /mnt/root
-echo "\"./root/install.sh\" to continue install"
+echo -e "\"cd\"\n\"chmod +x install.sh && .install.sh\" to continue install"
 
 # Change root
 arch-chroot /mnt /bin/bash
