@@ -3,7 +3,7 @@
 # *      File Name : install.sh                     *
 # *      Version : 1.0                              *
 # *      Creation Date : 27/07/2017                 *
-# *      Last Modified : 29/07/2017 10:10           *
+# *      Last Modified : 29/07/2017 14:14           *
 # *      Description : Install arch on Intel PC     *
 # ===================================================
 
@@ -17,8 +17,7 @@ pacman -Syy
 # Install the necessary packages
 ################################
 # Boot
-pacumount -R /mnt
-rebootman -S grub-efi-x86_64 efibootmgr os-prober --noconfirm --needed
+pacman -S grub-efi-x86_64 efibootmgr os-prober --noconfirm --needed
 
 # Network
 pacman -S ifplugd iw dialog wpa_actiond wpa_suppicant --noconfirm --needed
