@@ -20,7 +20,7 @@ pacstrap /mnt base base-devel
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 # Copy file to new system
-cp install.sh /mnt/root
+cp ~/Arch-master/install.sh /mnt/root
 echo -e "\"cd\"\n\"chmod +x install.sh && .install.sh\" to continue install"
 
 # Change root
