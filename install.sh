@@ -3,7 +3,7 @@
 # *      File Name : install.sh                     *
 # *      Version : 1.0                              *
 # *      Creation Date : 27/07/2017                 *
-# *      Last Modified : 28/07/2017 19:07           *
+# *      Last Modified : 29/07/2017 10:10           *
 # *      Description : Install arch on Intel PC     *
 # ===================================================
 
@@ -21,12 +21,15 @@ pacumount -R /mnt
 rebootman -S grub-efi-x86_64 efibootmgr os-prober --noconfirm --needed
 
 # Network
-pacman -S ifplugd --noconfirm --needed
+pacman -S ifplugd iw dialog wpa_actiond wpa_suppicant --noconfirm --needed
+
 enp=$(ip link | egrep -o 'enp\w*')
-systemctl enable netctl-ifplugd@$enp
+if [ -n "$enp" ]; then
+    systemctl enable netctl-ifplugd@$enp
+fi
+
 wlp=$(ip link | egrep -o 'wlp\w*')
 if [ -n "$wlp" ]; then
-    pacman -S iw dialog wpa_actiond wpa_suppicant --noconfirm --needed
     systemctl enable netctl-auto@$wlp
 fi
 
@@ -51,7 +54,7 @@ locale-gen
 echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 export LANG=en_US.UTF-8
 
-ln -s /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
+cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 hwclock --systohc --utc
 
 # Set hostname
@@ -77,4 +80,4 @@ grub-install
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Finish
-exit
+echo "\"exit\" to continue install"
