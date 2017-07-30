@@ -20,7 +20,7 @@ pacman -Syy
 pacman -S grub-efi-x86_64 efibootmgr os-prober --noconfirm --needed
 
 # Network
-pacman -S ifplugd iw dialog wpa_actiond wpa_suppicant --noconfirm --needed
+pacman -S ifplugd iw dialog wpa_actiond wpa_supplicant --noconfirm --needed
 
 enp=$(ip link | egrep -o 'enp\w*')
 if [ -n "$enp" ]; then
